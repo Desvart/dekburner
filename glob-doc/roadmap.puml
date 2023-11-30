@@ -1,0 +1,29 @@
+@startwbs
+'https://plantuml.com/component-diagram
+
++ dekburner
+
+ + Create a new project
+  + Set up git & GitHub
+  + Set up 2 modules
+  + Set up TypeScript for each
+  + Set up dist structure
+  + Test independency btw modules
+  + Test ability for one module to use the other
+
+ + Create a test net
+  + Set up Jest
+  + Set up Mokito
+  + Set up an output for TS test
+  + Set up the unit gate
+  + Set up a mock test
+  + Compare unit test run time btw generated JS and transpiled TS
+
+ + Create deployement tools
+  + Set up GitHub Actions
+  + Set up SonarCloud
+  + Develop an ingame app that pull the PROD code by polling GitHub for the latest green build
+  + Adapt bitburner-sync for synchronization between IDE and CTLQ
+
+
+@endwbs

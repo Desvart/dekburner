@@ -1,0 +1,44 @@
+{ /* https://www.typescriptlang.org/tsconfig */
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "out", "test", "doc"],
+  "compilerOptions": {
+
+    /* Input */
+    "rootDir": "./src/",                            /* Specify the root folder within your source files. */
+
+    /* Emit */
+    "outDir": "./out/",                           /* Specify an output folder for all emitted files. */
+    //"sourceMap": true,                          /* Create source map files for emitted JavaScript files. */
+    "inlineSourceMap": true,                      /* Emit a single file with source maps instead of having a separate file. */
+    "inlineSources": true,                        /* Append the TS code at the end of the source map */
+
+    /* Modules */
+    "module": "esnext",                           /* Specify what module code is generated. */
+    "moduleResolution": "node",                   /* Specify how TypeScript looks up a file from a given module specifier. */
+    "resolveJsonModule": true,                    /* Enable importing .json files. */
+
+    /* Interop Constraints */
+    "esModuleInterop": true,                      /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
+    "forceConsistentCasingInFileNames": true,     /* Ensure that casing is correct in imports. */
+
+    /* JavaScript Support */
+    "allowJs": true,                              /* Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. */
+
+    /* Language and Environment */
+    "target": "es2022",                           /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+
+    /* Type Checking */
+    "strict": true,                               /* Enable all strict type-checking options. */
+    "alwaysStrict": true,                         /* Ensure 'use strict' is always emitted. */
+    "noImplicitAny": true,                        /* Enable error reporting for expressions and declarations with an implied 'any' type. */
+    "noImplicitOverride": true,                   /* Ensure overriding members in derived classes are marked with an 'override' modifier. */
+    "noImplicitReturns": true,                    /* Enable error reporting when not all code paths in function return a value. */
+
+    /* Path mapper */
+    "baseUrl": "src/",                            /* Base directory to resolve non-relative module names. */
+    "paths": {                                    /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
+      "/*": ["*"],
+      "@ns": ["../../glob-resources/NetscriptDefinitions.d.ts"]
+    }
+  }
+}

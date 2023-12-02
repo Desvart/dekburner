@@ -17,7 +17,7 @@ export async function main(ns: INs) {
     // This empty element will be used to inject our HTML in it.
     const anchorId: string = 'scanAnchor';
     const container = `<p class="MuiTypography-root MuiTypography-body1 css-cxl1tz" id="${anchorId}"></p>`;
-    const xpath = `//p[contains(text(), "${anchorStr}")]`;
+    const xpath = `//span[contains(text(), "${anchorStr}")]`;
     const matchingElement = <HTMLElement>doc.evaluate(xpath, doc, null,XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
     matchingElement.insertAdjacentHTML('beforebegin', container);
     

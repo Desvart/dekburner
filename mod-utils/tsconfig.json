@@ -7,7 +7,7 @@
     "rootDir": "./src/",                            /* Specify the root folder within your source files. */
 
     /* Emit */
-    "outDir": "./out/",                           /* Specify an output folder for all emitted files. */
+    "outDir": "./out/utils/",                           /* Specify an output folder for all emitted files. */
     //"sourceMap": true,                          /* Create source map files for emitted JavaScript files. */
     "inlineSourceMap": true,                      /* Emit a single file with source maps instead of having a separate file. */
     "inlineSources": true,                        /* Append the TS code at the end of the source map */

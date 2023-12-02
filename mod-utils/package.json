@@ -5,6 +5,7 @@
   "scripts": {
     "watch:transpile": "tsc -w --preserveWatchOutput -p tsconfig.json",
     "transpile": "tsc -p tsconfig.json",
+    "watch:remote": "bitburner-filesync",
     "lint": "eslint {src,test}/**/*.{js,ts} --quiet",
     "format": "prettier --write '{src,test}/**/*.{js,ts}'",
     "test": "jest --coverage .*.test.ts"
@@ -14,6 +15,7 @@
     "@types/node": "^20.10.1",
     "@typescript-eslint/eslint-plugin": "^6.13.1",
     "@typescript-eslint/parser": "^6.13.1",
+    "bitburner-filesync": "^1.2.0-beta4",
     "eslint": "^8.54.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.1.0",

@@ -1,4 +1,4 @@
-import {NS as INs} from '@ns';
+import { AutocompleteData, NS as INs } from "@ns";
 
 /**
  * This script identifies the path to go from home to a target server. By default, the script automatically tries to
@@ -15,7 +15,7 @@ const FLAGS: [string, boolean][] = [
 export async function main(ns: INs): Promise<void> {
     const flags = ns.flags(FLAGS);
     let path: string[] = [];
-    let targetServer: string = flags._[0];
+    let targetServer: string = (flags._ as string[])[0];
 
     buildPathToServer(ns, '', 'home', targetServer, path);
     
@@ -57,6 +57,6 @@ function buildPathToServer(
     return false;
 }
 
-export function autocomplete(data, args) {
+export function autocomplete(data: AutocompleteData, args: string[]): string[] {
     return [...data.servers];
 }

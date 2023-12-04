@@ -9,6 +9,7 @@
 - [ ] Deploy on different environments
 
 ## CI/CD pipeline
+- [ ] Configure global script to build multiple modules at once with tsc -b --watch and then execute local script.
 - [ ] Link the deploy command to the SonarCloud gate result
 - [ ] Split the actions in SonarClouds with the saveArtifact and loadArtifact steps
 - [ ] Configure the CI/CD pipeline to

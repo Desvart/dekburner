@@ -15,6 +15,7 @@ class Scanner {
   constructor(private readonly nsA: NsAdapter) {}
 
   cleanPublishingPort(): void {
+    console.debug('Cleaning publishing port');
     this.nsA.cleanupPort(this.SCANNER_PORT);
   }
 

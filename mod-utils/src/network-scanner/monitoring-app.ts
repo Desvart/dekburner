@@ -1,5 +1,5 @@
 import { NS as INs } from '@ns';
-import { IServerStaticData } from '/networkScanner/scanner.service';
+import { IServerStaticData } from '/network-scanner/scanner-service';
 
 /** @param {NS} ns */
 export async function main(ns: INs) {

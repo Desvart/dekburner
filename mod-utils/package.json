@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "watch:transpile": "tsc -w --preserveWatchOutput -p tsconfig.json",
-    "transpile": "tsc -p tsconfig.json",
+    "transpile": "tsc -p tsconfig.json && node ./build/post-build.js",
     "watch:remote": "bitburner-filesync",
     "lint": "eslint {src,test}/**/*.{js,ts} --quiet",
     "format": "prettier --write '{src,test}/**/*.{js,ts}'",

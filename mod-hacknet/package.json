@@ -1,8 +1,10 @@
 {
-  "name": "mod-hacknet",
+  "name": "hacknet",
   "version": "1.0.0",
   "scripts": {
     "transpile": "tsc --project ./src/tsconfig.json",
+    "post-transpile": "node ../build/out/move-js-to-ci.js",
+    "build": "npm run transpile && npm run post-transpile",
     "test": "jest --coverage --coverageProvider=v8"
   }
 }

@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.base.json",
-  "include": ["**/*.ts"],
+  //"include": ["**/*.ts"],
+  "include": ["./move-js-to-ci.ts"],
   "composite": false,
   "declaration": false,
   "declarationMap": false,

@@ -11,7 +11,7 @@ This project has been set up to offer the following capabilities:
 * Code is reviewed by eslint and prettier
 * ✔️ Master dode is located on GitHub
 * Code is analyzed by SonarCloud
-* At any given time a full package can be built, on demand, for deployment
+* ✔️ At any given time a full package can be built, on demand, for deployment
 * The package building process can be triggered automatically on each code change
 * Javascript transpiled files can be pushed on demand to a test environment
 * Javascript transpiled files can be pushed on demand to a production environment

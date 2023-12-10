@@ -40,7 +40,7 @@
     "baseUrl": "./",                            /* Base directory to resolve non-relative module names. */
     "paths": {                                  /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
       "/*": ["*"],
-      "@ns": ["./mod-common/interfaces/NetscriptDefinitions"],
+      "@ns": ["./mod-common/src/NetscriptDefinitions"],
       "@common/*": ["./mod-common/src/*"]
     }
 

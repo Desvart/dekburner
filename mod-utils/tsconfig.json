@@ -8,7 +8,7 @@
     "rootDir": "./src/",                          /* Specify the root folder within your source files. */
 
     /* Emit */
-    "outDir": "./out/utils/",                     /* Specify an output folder for all emitted files. */
+    "outDir": "./out/",                     /* Specify an output folder for all emitted files. */
     "noEmitOnError": true,                        /* Disable emitting files if any type checking errors are reported. */
     //"sourceMap": true,                          /* Create source map files for emitted JavaScript files. */
     "inlineSourceMap": true,                      /* Emit a single file with source maps instead of having a separate file. */
@@ -40,7 +40,7 @@
     "baseUrl": "src/",                            /* Base directory to resolve non-relative module names. */
     "paths": {                                    /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
       "/*": ["*"],
-      "@ns": ["../../glob-resources/NetscriptDefinitions.d.ts"]
+      "@ns": ["../../mod-common/interfaces/NetscriptDefinitions"]
     }
   }
 }

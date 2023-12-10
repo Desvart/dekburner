@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "transpile": "tsc --project ./src/tsconfig.json",
+    "convert-import-paths": "node ./out/convert-import-paths.js",
 
     "clean-all": "node ./out/clean-all.js",
     "transpile-all": "tsc --build --verbose --force",

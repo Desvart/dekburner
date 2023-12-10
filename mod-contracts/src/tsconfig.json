@@ -5,8 +5,9 @@
   "references": [
     { "path": "../../mod-common/src/" }
   ],
+
   "compilerOptions": {
     "rootDir": "./",
-    "outDir": "../out/"
+    "outDir": "../out/",
   }
 }

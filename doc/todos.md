@@ -7,6 +7,7 @@
 - [ ] Prettier
 - [ ] Linter
 - [ ] Deploy on different environments
+- [ ] custome loger to enable or disable DEBUG mode module by module
 
 ## CI/CD pipeline
 - [ ] Configure global script to build multiple modules at once with tsc -b --watch and then execute local script.

@@ -1,11 +1,11 @@
 { /* https://www.typescriptlang.org/tsconfig */
-  "include": ["src/**/*"],
+  "include": ["./**/*"],
   "exclude": ["node_modules", "out", "test", "doc"],
   "compilerOptions": {
     "composite": true,                            /* Enable project compilation */
 
     /* Input */
-    "rootDir": "./src/",                          /* Specify the root folder within your source files. */
+    "rootDir": "./",                          /* Specify the root folder within your source files. */
 
     /* Emit */
     "outDir": "./out/",                     /* Specify an output folder for all emitted files. */
@@ -37,10 +37,10 @@
     "noImplicitReturns": true,                    /* Enable error reporting when not all code paths in function return a value. */
 
     /* Path mapper */
-    "baseUrl": "src/",                            /* Base directory to resolve non-relative module names. */
+    "baseUrl": "./",                            /* Base directory to resolve non-relative module names. */
     "paths": {                                    /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
       "/*": ["*"],
-      "@ns": ["../../mod-common/interfaces/NetscriptDefinitions"]
+      "@ns": ["../../mod-common/src/NetscriptDefinitions"]
     }
   }
 }

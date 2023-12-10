@@ -1,0 +1,10 @@
+{
+  "extends": "../tsconfig.base.json",
+  "files": [],
+  "references": [
+    { "path": "./mod-contracts" },
+    { "path": "./mod-hacking" },
+    { "path": "./mod-hacknet" },
+    { "path": "./mod-utils" },
+  ]
+}

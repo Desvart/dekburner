@@ -1,0 +1,23 @@
+{
+  "preset": "ts-jest",
+  "testEnvironment": "node",
+
+  "roots": ["./"],
+  "transform": {
+    "^.+\\.tsx?$": ["ts-jest", {
+      "isolatedModules": true,
+      "tsconfig": "<rootDir>/test/tsconfig.json"
+    }]
+  },
+  "testRegex": "(/test/.*\\.test\\.ts)$",
+  "moduleFileExtensions": ["ts", "js", "json"],
+
+  "moduleNameMapper": {
+    "^/(.*)$": "<rootDir>/src/$1",
+    "^@ns$": "<rootDir>/../mod-common/interfaces/NetscriptDefinitions",
+    "^@common/(.*)$": "<rootDir>/../mod-common/src/$1"
+  },
+
+  "collectCoverageFrom": ["src/**/*.{ts,tsx}"],
+  "coverageDirectory": "<rootDir>/test/coverage/"
+}

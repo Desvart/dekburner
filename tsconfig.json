@@ -1,15 +1,13 @@
 { /* https://www.typescriptlang.org/tsconfig */
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "out", "test", "doc"],
+  "include": ["dist/src/**/*"],
+  "exclude": ["node_modules", "mod-*", "glob-*", "dist/env/", "dist/build/"],
   "compilerOptions": {
-    "composite": true,                            /* Enable project compilation */
 
     /* Input */
-    "rootDir": "./src/",                          /* Specify the root folder within your source files. */
+    "rootDir": "./dist/src",                            /* Specify the root folder within your source files. */
 
     /* Emit */
-    "outDir": "./out/utils/",                     /* Specify an output folder for all emitted files. */
-    "noEmitOnError": true,                        /* Disable emitting files if any type checking errors are reported. */
+    "outDir": "./dist/build/",                           /* Specify an output folder for all emitted files. */
     //"sourceMap": true,                          /* Create source map files for emitted JavaScript files. */
     "inlineSourceMap": true,                      /* Emit a single file with source maps instead of having a separate file. */
     "inlineSources": true,                        /* Append the TS code at the end of the source map */
@@ -35,12 +33,5 @@
     "noImplicitAny": true,                        /* Enable error reporting for expressions and declarations with an implied 'any' type. */
     "noImplicitOverride": true,                   /* Ensure overriding members in derived classes are marked with an 'override' modifier. */
     "noImplicitReturns": true,                    /* Enable error reporting when not all code paths in function return a value. */
-
-    /* Path mapper */
-    "baseUrl": "src/",                            /* Base directory to resolve non-relative module names. */
-    "paths": {                                    /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
-      "/*": ["*"],
-      "@ns": ["../../glob-resources/NetscriptDefinitions.d.ts"]
     }
-  }
 }

@@ -1,0 +1,8 @@
+{
+  "name": "mod-hacknet",
+  "version": "1.0.0",
+  "scripts": {
+    "transpile": "tsc --project ./src/tsconfig.json",
+    "test": "jest --coverage --coverageProvider=v8"
+  }
+}

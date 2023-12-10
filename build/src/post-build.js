@@ -17,6 +17,6 @@ function copyFolder(srcDir, destDir, relativePath = '') {
   });
 }
 
-const outDir = '../dist/ctlq/';
+const outDir = '../dist/env/ctlq/';
 copyFolder('./out/', outDir);
 

@@ -1,0 +1,7 @@
+{
+  "projects": [
+    "<rootDir>/../mod-alpha/jest.config.json",
+    "<rootDir>/../mod-beta/jest.config.json"
+  ],
+  "coverageProvider": "v8"
+}

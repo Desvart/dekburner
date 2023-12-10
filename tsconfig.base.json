@@ -1,0 +1,48 @@
+{
+  "compilerOptions": {
+
+    /* Multi-module transpilation */
+    "composite": true,                          /* Enable constraints that allow a TypeScript project to be used with project references. */
+    "declaration": true,                        /* Generates corresponding '.d.ts' file. */
+
+    /* Modules */
+    "module": "esnext",                         /* Specify what module code is generated. */
+    "moduleResolution": "node",                 /* Specify how TypeScript looks up a file from a given module specifier. */
+    "resolveJsonModule": true,                  /* Enable importing .json files */
+
+    /* Interop constraints */
+    "esModuleInterop": true,                    /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. */
+    "forceConsistentCasingInFileNames": true,   /* Ensure that casing is correct in imports. */
+
+    /* JavaScript support */
+    "allowJs": true,                            /* Allow JavaScript files to be a part of your program. */
+
+    /* Language and Environment */
+    "target": "es2022",                         /* Specify ECMAScript target version. */
+
+    /* Emit */
+    "noEmitOnError": true,                      /* Disable emitting files if any type checking errors are reported. */
+
+    /* Source maps */
+    "declarationMap": true,                     /* Generates a sourcemap for each corresponding '.d.ts' file. */
+//  "sourceMap": true,                          /* Create source map files for emitted JavaScript files. */
+//  "inlineSourceMap": true,                    /* Emit a single file with source maps instead of having a separate file. */
+//  "inlineSources": true,                      /* Append the TS code at the end of the source map */
+
+    /* Type checking */
+    "strict": true,                             /* Enable all strict type-checking options. */
+    "alwaysStrict": true,                       /* Parse in strict mode and emit "use strict" for each source file. */
+    "noImplicitAny": true,                      /* Enable error reporting for expressions and declarations with an implied 'any' type. */
+    "noImplicitOverride": true,                 /* Ensure overriding members in derived classes are marked with an 'override' modifier. */
+    "noImplicitReturns": true,                  /* Enable error reporting when not all code paths in function return a value. */
+
+    /* Import mapper */
+    "baseUrl": "./",                            /* Base directory to resolve non-relative module names. */
+    "paths": {                                  /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
+      "/*": ["*"],
+      "@ns": ["./mod-common/interfaces/NetscriptDefinitions"],
+      "@common/*": ["./mod-common/src/*"]
+    }
+
+  }
+}

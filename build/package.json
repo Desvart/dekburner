@@ -1,0 +1,14 @@
+{
+  "name": "build",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "transpile": "tsc --project ./src/tsconfig.json",
+
+    "clean-all": "node ./out/clean-all.js",
+    "transpile-all": "tsc --build --verbose --force",
+    "test": "jest --coverage ",
+    "watch:transpile-all": "tsc --build --watch",
+    "dist": "node ./out/post-transpile.js"
+  }
+}

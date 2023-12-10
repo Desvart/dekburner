@@ -1,0 +1,1 @@
+https://github.com/Drakmyth/BitburnerScripts/blob/master/src/contracts/compression-i-rle-compression.ts

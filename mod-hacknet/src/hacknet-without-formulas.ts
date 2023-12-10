@@ -10,11 +10,11 @@ class HacknetFarmingWithoutFormulas {
   constructor(private readonly nsA: NsAdapter) {
   }
 
-  startFarming() {
+  async startFarming() {
     do {
       const upgrade= this.identifyCheapestUpgrade();
-      this.buyIfConditionReached(upgrade);
-    } while (this.farminExitCriteria());
+      await this.buyIfConditionReached(upgrade);
+    } while (this.farmingExitCriteria());
     // loop until server owned = 30
     // identify cheapest upgrade
     // buy cheapest upgrade
@@ -25,19 +25,42 @@ class HacknetFarmingWithoutFormulas {
     return this.identifyCheapest(upgrades);
   }
 
-  getAllUpgrades():  {
-
+  getAllUpgrades(): IUpgrade[] {
+  return [
+    { id: 0, type: UpgradeType.CORES, price: 0 },
+    { id: 1, type: UpgradeType.CORES, price: 0 },
+  ];
   }
 
 
-  buyIfConditionReached(upgrade: IUpgrade) {
-    while(!this.buyConditionReached(upgrade)) {
+  async buyIfConditionReached(upgrade: IUpgrade) {
+    while(!this.areBuyConditionsMet(upgrade)) {
       const waitingTime = this.computeWaitingTime(upgrade.price);
-      this.nsA.waitMinutes(waitingTime);
+      await this.nsA.waitMinutes(waitingTime);
     }
     this.buyUpgrade(upgrade);
   }
 
+  private farmingExitCriteria(): boolean {
+    return false;
+  }
+
+
+  private identifyCheapest(upgrades: IUpgrade[]): IUpgrade {
+    return { id: 0, type: UpgradeType.CORES, price: 0 };
+  }
+
+  private buyUpgrade(upgrade: IUpgrade): void {
+    return undefined;
+  }
+
+  private computeWaitingTime(price: number): number {
+    return 0;
+  }
+
+  private areBuyConditionsMet(upgrade: IUpgrade): boolean {
+    return false;
+  }
 }
 
 interface IUpgrade {
@@ -56,6 +79,10 @@ enum UpgradeType {
 class NsAdapter {
   constructor(public readonly ns: NS) {
 
+  }
+
+  async waitMinutes(waitingTime: any): Promise<void> {
+    await this.ns.sleep(waitingTime);
   }
 }
 

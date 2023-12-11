@@ -4,6 +4,8 @@ import { NetworkScanner } from '/mod-contracts/src/scrapper/network-scanner';
 import { Scrapper } from "/mod-contracts/src/scrapper/scrapper";
 import { IContractDTO } from "/mod-contracts/src/scrapper/IContractDTO";
 import { Publisher } from "/mod-contracts/src/scrapper/publisher";
+import { Config } from "/mod-contracts/src/common/config";
+import { debug } from "/mod-contracts/src/common/logger";
 
 /** @param {NS} ns */
 export async function main(ns: INs): Promise<void> {
@@ -18,33 +20,29 @@ export async function main(ns: INs): Promise<void> {
 
 class Orchestrator {
 
-  private readonly CONTRACT_PORT: number = 2;
-  private readonly LOOP_INTERVAL: number = 5 * 60 * 1000; // 5 minutes
-  private readonly BATCH_SIZE: number = 5;
-
   private scrapper: Scrapper;
   private publisher: Publisher;
 
   constructor(private readonly nsA: NsAdapter) {
     const serverNames: string[] = new NetworkScanner(this.nsA).getServerNames();
     this.scrapper = new Scrapper(this.nsA, serverNames);
-    this.publisher = new Publisher(this.nsA, this.CONTRACT_PORT);
+    this.publisher = new Publisher(this.nsA);
   }
 
   async start(): Promise<void> {
-    console.debug('Starting contract scrapper daemon...');
+    debug('Starting contract scrapper daemon...');
 
     do {
       const contracts: IContractDTO[] = this.scrapper.getAllContracts();
-      await this.publisher.publish(contracts, this.BATCH_SIZE);
-      await this.waitForNextLoop(this.LOOP_INTERVAL);
+      await this.publisher.publish(contracts);
+      await this.waitForNextLoop();
     } while (!this.exitConditionReached());
 
-    console.debug('Contract scrapper daemon stopped.');
+    debug('Contract scrapper daemon stopped.');
   }
 
-  private async waitForNextLoop(loopInterval: number): Promise<void> {
-    await this.nsA.wait(loopInterval);
+  private async waitForNextLoop(): Promise<void> {
+    await this.nsA.wait(Config.WAIT_TIME_BETWEEN_SCRAPPING);
   }
 
   private exitConditionReached(): boolean {

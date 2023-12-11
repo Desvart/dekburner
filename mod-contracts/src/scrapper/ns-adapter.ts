@@ -1,4 +1,6 @@
 import { CodingContractData, NS as INs } from "@ns";
+import { Constants } from "/mod-contracts/src/common/config";
+
 export class NsAdapter {
 
     constructor(private readonly ns: INs) {}
@@ -20,7 +22,7 @@ export class NsAdapter {
   }
 
   getContractNames(hostname: string): string[] {
-    return this.ns.ls(hostname, '.cct');
+    return this.ns.ls(hostname, Constants.CONTRACT_FILE_EXTENSION);
   }
 
   cleanPreviousPublication(contractPort: number): void {
@@ -31,9 +33,4 @@ export class NsAdapter {
     return this.ns.tryWritePort(contractPort, payload);
   }
 
-  setupConsole() {
-    this.ns.tail();
-    this.ns.disableLog('ALL');
-    this.ns.clearLog();
-  }
 }

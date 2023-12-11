@@ -1,10 +1,11 @@
 import { NsAdapter } from "/mod-contracts/src/scrapper/ns-adapter";
+import { Constants } from "/mod-contracts/src/common/config";
 
 export class NetworkScanner {
 
   constructor(private readonly nsA: NsAdapter) {}
 
-  getServerNames(currentNode = 'home', scannedServer: Set<string> = new Set()): string[] {
+  getServerNames(currentNode = Constants.HOME_HOSTNAME, scannedServer: Set<string> = new Set()): string[] {
 
     const neighbourServers: string[] = this.nsA.scanForNeighbourServers(currentNode);
     const serversToScan: string[] = this.filterAlreadyScannedServers(neighbourServers, scannedServer);

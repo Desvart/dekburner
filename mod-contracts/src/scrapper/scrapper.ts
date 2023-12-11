@@ -1,6 +1,7 @@
 import { NsAdapter } from "/mod-contracts/src/scrapper/ns-adapter";
 import { Contract } from "/mod-contracts/src/scrapper/contract";
 import { IContractDTO } from "/mod-contracts/src/scrapper/IContractDTO";
+import { debug } from "/mod-contracts/src/common/logger";
 
 export class Scrapper {
   constructor(
@@ -9,7 +10,7 @@ export class Scrapper {
   ) {}
 
   getAllContracts(): IContractDTO[] {
-    console.debug('Scanning for contracts...');
+    debug('Scanning for contracts...');
 
     let allContracts: Contract[] = [];
 
@@ -18,18 +19,18 @@ export class Scrapper {
       allContracts.push(...serverContracts);
     });
 
-    console.debug('Total contracts found:', allContracts.length);
+    debug('Total contracts found:', allContracts.length);
 
     return this.convertToDTO(allContracts);
   }
 
   private getServerContracts(hostname: string): Contract[] {
-    console.debug('Scanning for contracts on', hostname);
+    debug('Scanning for contracts on', hostname);
     const contractNames: string[] = this.nsA.getContractNames(hostname);
     const contracts: Contract[] = contractNames.map((contractName: string): Contract =>
       new Contract(this.nsA, contractName, hostname)
     );
-    console.debug('Contracts found on', hostname, ':', contracts.length);
+    debug('Contracts found on', hostname, ':', contracts.length);
     return contracts;
   }
 

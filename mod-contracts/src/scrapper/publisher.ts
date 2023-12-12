@@ -40,15 +40,19 @@ export class Publisher {
     const payload: string = JSON.stringify(batch);
     console.debug(Constants.MODULE_NAME, 'Publishing batch:', payload);
 
-    let publicationSuccessful:boolean = false;
-    do {
-      publicationSuccessful = this.nsA.publish(payload, Config.CONTRACT_PUBLICATION_PORT);
-      console.debug(Constants.MODULE_NAME, 'Publication status:', publicationSuccessful ? 'success' : 'failed');
-      await this.nsA.wait(Config.WAIT_TIME_TO_NEXT_PUBLICATION);
+    let publicationSuccessful: boolean = this.publishAndLog(payload);
 
-    } while (!publicationSuccessful)
+    while (!publicationSuccessful) {
+      await this.nsA.wait(Config.WAIT_TIME_TO_NEXT_PUBLICATION);
+      publicationSuccessful = this.publishAndLog(payload);
+    }
   }
 
+  private publishAndLog(payload: string): boolean {
+    const publicationSuccessful: boolean = this.nsA.publish(payload, Config.CONTRACT_PUBLICATION_PORT);
+    console.debug(Constants.MODULE_NAME, 'Publication status:', publicationSuccessful ? 'success' : 'failed');
+    return publicationSuccessful;
+  }
 
 
 }

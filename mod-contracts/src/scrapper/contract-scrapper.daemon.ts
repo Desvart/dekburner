@@ -10,7 +10,7 @@ import { Logger } from "/mod-common/src/logger";
 /** @param {NS} ns */
 export async function main(ns: INs): Promise<void> {
 
-  const logger = new Logger();
+  const logger = new Logger(ns);
   logger.setupDebugMode(Config.DEBUG_MODE);
 
   const nsA: NsAdapter = new NsAdapter(ns);

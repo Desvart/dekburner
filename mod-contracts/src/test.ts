@@ -7,7 +7,7 @@ export async function main(ns: INs): Promise<void> {
 
   console.info(' ');
 
-  const logger = new Logger();
+  const logger = new Logger(ns);
 
   console.info('INFO - Before');
   console.debug('DEBUG - Before');

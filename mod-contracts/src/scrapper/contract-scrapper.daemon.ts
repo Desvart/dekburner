@@ -4,11 +4,14 @@ import { NetworkScanner } from '/mod-contracts/src/scrapper/network-scanner';
 import { Scrapper } from "/mod-contracts/src/scrapper/scrapper";
 import { IContractDTO } from "/mod-contracts/src/scrapper/IContractDTO";
 import { Publisher } from "/mod-contracts/src/scrapper/publisher";
-import { Config } from "/mod-contracts/src/common/config";
-import { debug } from "/mod-contracts/src/common/logger";
+import { Config, Constants } from "/mod-contracts/src/common/config";
+import { Logger } from "/mod-common/src/logger";
 
 /** @param {NS} ns */
 export async function main(ns: INs): Promise<void> {
+
+  const logger = new Logger();
+  logger.setupDebugMode(Config.DEBUG_MODE);
 
   const nsA: NsAdapter = new NsAdapter(ns);
   nsA.cleanPreviousPublication(2);
@@ -16,6 +19,7 @@ export async function main(ns: INs): Promise<void> {
   const orchestrator = new Orchestrator(nsA);
   await orchestrator.start();
 
+  logger.resetDebugMode();
 }
 
 class Orchestrator {
@@ -30,7 +34,7 @@ class Orchestrator {
   }
 
   async start(): Promise<void> {
-    debug('Starting contract scrapper daemon...');
+    console.debug(Constants.MODULE_NAME, 'Starting contract scrapper daemon...');
 
     do {
       const contracts: IContractDTO[] = this.scrapper.getAllContracts();
@@ -38,7 +42,7 @@ class Orchestrator {
       await this.waitForNextLoop();
     } while (!this.exitConditionReached());
 
-    debug('Contract scrapper daemon stopped.');
+    console.debug(Constants.MODULE_NAME, 'Contract scrapper daemon stopped.');
   }
 
   private async waitForNextLoop(): Promise<void> {

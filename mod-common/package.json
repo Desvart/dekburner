@@ -1,6 +1,11 @@
 {
-  "name": "mod-common",
+  "name": "common",
   "version": "1.0.0",
-  "dependencies": {
+  "scripts": {
+    "transpile": "tsc --project ./src/tsconfig.json",
+    "post-transpile": "node ../build/out/move-js-to-ci.js",
+    "convert-import-paths": "node ../build/out/convert-import-paths.js",
+    "build": "npm run transpile && npm run post-transpile && npm run convert-import-paths",
+    "test": "jest --coverage --coverageProvider=v8"
   }
 }

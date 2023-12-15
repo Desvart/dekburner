@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.base.json",
   //"include": ["**/*.ts"],
-  "include": ["./move-js-to-ci.ts", "./convert-import-paths.ts"],
+  "include": ["./remove-non-js-files.ts", "./convert-import-paths.ts"],
   "composite": false,
   "declaration": false,
   "declarationMap": false,

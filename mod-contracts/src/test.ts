@@ -1,6 +1,7 @@
 import { NS as INs } from "@ns";
 import { Solver_subarrayWithMaximumSum } from "/mod-contracts/src/solver-service/solvers/solver_subarray-with-maximum-sum";
 import { Solver_totalWaysToSum } from "/mod-contracts/src/solver-service/solvers/solver_total-ways-to-sum";
+import { Solver_spiralizeMatrix } from "/mod-contracts/src/solver-service/solvers/solver_spiralize-matrix";
 
 // TODO: generate the output already in ci folder and then delete all other files AND reformat import
 
@@ -15,11 +16,11 @@ export async function main(ns: INs): Promise<void> {
   //const contractTypes = ns.codingcontract.getContractTypes();
   //ns.print(contractTypes);
 
-  testContractSolver("Total Ways to Sum", qty, ns);
+  testContractSolver("Spiralize Matrix", qty, ns);
 }
 
 function testContractSolver(type: string, qty: number, ns: INs): void {
-  const solver = new Solver_totalWaysToSum();
+  const solver = new Solver_spiralizeMatrix();
   for (let i = 0; i < qty; i++) {
     ns.print(`Contract type: ${type}`);
     ns.print(`Iteration ${i + 1} of ${qty}`);
@@ -60,7 +61,7 @@ function testContractSolver(type: string, qty: number, ns: INs): void {
   }
 }
 
-function convertData(data: number): number[] {
-  return [data, ...Array.from({ length: data - 1 }, (_, i) => i + 1)];
+function convertData(data: number[][]): number[][] {
+  return data
 }
 

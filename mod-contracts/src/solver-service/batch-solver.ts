@@ -6,6 +6,7 @@ import { Constants } from "/mod-contracts/src/common/config";
 import { ContractSolver } from "/mod-contracts/src/solver-service/contract-solver";
 import { Solver_subarrayWithMaximumSum } from "/mod-contracts/src/solver-service/solvers/solver_subarray-with-maximum-sum";
 import { Solver_totalWaysToSum } from "/mod-contracts/src/solver-service/solvers/solver_total-ways-to-sum";
+import { Solver_spiralizeMatrix } from "/mod-contracts/src/solver-service/solvers/solver_spiralize-matrix";
 
 export class BatchSolver {
   solve(contracts: IContractDTO[]): ISolvedContractDTO[] {
@@ -45,10 +46,10 @@ export class BatchSolver {
       Constants.CONTRACT_TYPES.TOTAL_WAYS_TO_SUM_II,
   new Solver_totalWaysToSum()
     ),
-  //   new ContractSolver(
-  //     Constants.CONTRACT_TYPES.SPIRALIZE_MATRIX,
-  // new Solver_spiralizeMatrix(),
-  //   ),
+    new ContractSolver(
+      Constants.CONTRACT_TYPES.SPIRALIZE_MATRIX,
+  new Solver_spiralizeMatrix(),
+    ),
   //   new ContractSolver(
   //     Constants.CONTRACT_TYPES.ARRAY_JUMPING_GAME,
   //     new Solver_arrayJumpingGame(),

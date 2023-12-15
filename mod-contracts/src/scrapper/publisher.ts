@@ -1,5 +1,5 @@
 import { NsAdapter } from "/mod-contracts/src/scrapper/ns-adapter";
-import { IContractDTO } from "/mod-contracts/src/scrapper/IContractDTO";
+import { IContractDTO } from "/mod-contracts/src/common/IContractDTO";
 import { Config, Constants } from "/mod-contracts/src/common/config";
 
 export class Publisher {

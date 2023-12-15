@@ -1,6 +1,6 @@
 import { NsAdapter } from "/mod-contracts/src/scrapper/ns-adapter";
 import { CodingContractData } from "@ns";
-import { IContractDTO } from "/mod-contracts/src/scrapper/IContractDTO";
+import { IContractDTO } from "/mod-contracts/src/common/IContractDTO";
 
 export class Contract {
 

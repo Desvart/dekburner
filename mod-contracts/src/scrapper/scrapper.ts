@@ -1,6 +1,6 @@
 import { NsAdapter } from "/mod-contracts/src/scrapper/ns-adapter";
 import { Contract } from "/mod-contracts/src/scrapper/contract";
-import { IContractDTO } from "/mod-contracts/src/scrapper/IContractDTO";
+import { IContractDTO } from "/mod-contracts/src/common/IContractDTO";
 import { Constants } from "/mod-contracts/src/common/config";
 
 export class Scrapper {

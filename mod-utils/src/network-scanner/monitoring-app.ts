@@ -1,6 +1,11 @@
 import { NS as INs } from '@ns';
 import { IServerStaticData } from '/network-scanner/scanner-service';
 
+// TODO: Remove scan-network-daemon.ts and use this script instead
+// TODO: Add a way to automatically launch scanner-service.ts if it is not already running
+// TODO: Split the monitoring-app.ts into multiple short scripts
+// TODO: Split the scanner-service.ts into multiple short scripts and put all that into a dedicated subfolder
+
 /** @param {NS} ns */
 export async function main(ns: INs) {
   ns.tail();

@@ -2,7 +2,7 @@ import { NS as INs } from '@ns';
 import { NsAdapter } from "/mod-contracts/src/scrapper/ns-adapter";
 import { NetworkScanner } from '/mod-contracts/src/scrapper/network-scanner';
 import { Scrapper } from "/mod-contracts/src/scrapper/scrapper";
-import { IContractDTO } from "/mod-contracts/src/scrapper/IContractDTO";
+import { IContractDTO } from "/mod-contracts/src/common/IContractDTO";
 import { Publisher } from "/mod-contracts/src/scrapper/publisher";
 import { Config, Constants } from "/mod-contracts/src/common/config";
 import { Logger } from "/mod-common/src/logger";
@@ -13,7 +13,7 @@ export async function main(ns: INs): Promise<void> {
   const logger = new Logger(ns);
   logger.setupDebugMode(Config.DEBUG_MODE);
 
-  const nsA: NsAdapter = new NsAdapter(ns);
+  const nsA = new NsAdapter(ns);
   nsA.cleanPreviousPublication(2);
 
   const orchestrator = new Orchestrator(nsA);
@@ -38,6 +38,8 @@ class Orchestrator {
 
     do {
       const contracts: IContractDTO[] = this.scrapper.getAllContracts();
+      // TODO: launch the solver service if contracts is not empty
+      // the service should kill itself if the queue is empty
       await this.publisher.publish(contracts);
       await this.waitForNextLoop();
     } while (!this.exitConditionReached());

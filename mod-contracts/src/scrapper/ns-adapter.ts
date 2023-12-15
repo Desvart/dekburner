@@ -2,12 +2,11 @@ import { CodingContractData, NS as INs } from "@ns";
 import { Constants } from "/mod-contracts/src/common/config";
 
 export class NsAdapter {
+  constructor(private readonly ns: INs) {}
 
-    constructor(private readonly ns: INs) {}
-
-    scanForNeighbourServers(serverName: string): string[] {
-        return this.ns.scan(serverName);
-    }
+  scanForNeighbourServers(serverName: string): string[] {
+    return this.ns.scan(serverName);
+  }
 
   async wait(loopInterval: number): Promise<void> {
     await this.ns.sleep(loopInterval);
@@ -32,5 +31,4 @@ export class NsAdapter {
   publish(payload: string, contractPort: number): boolean {
     return this.ns.tryWritePort(contractPort, payload);
   }
-
 }

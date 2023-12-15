@@ -36,7 +36,10 @@ function testContractSolver(type: string, qty: number, ns: INs): void {
     const data = ns.codingcontract.getData(fileName, "home");
     ns.print(`Data: ${data}`);
 
-    const solution = solver.solve(data);
+    const convertedData = convertData(data);
+    ns.print(`Converted data: ${convertedData}`);
+
+    const solution = solver.solve(convertedData);
     ns.print(`Solution: ${solution}`);
 
     const answer = ns.codingcontract.attempt(solution, fileName, "home");
@@ -56,3 +59,8 @@ function testContractSolver(type: string, qty: number, ns: INs): void {
     }
   }
 }
+
+function convertData(data: number): number[] {
+  return [data, ...Array.from({ length: data - 1 }, (_, i) => i + 1)];
+}
+

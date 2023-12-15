@@ -39,12 +39,12 @@ export class BatchSolver {
     new ContractSolver(
       Constants.CONTRACT_TYPES.TOTAL_WAYS_TO_SUM,
       new Solver_totalWaysToSum(),
-      //(data) => [data, [...Array(data).keys()].filter((a) => a > 0)],
+      (data) => [data, [...Array.from({ length: data - 1 }, (_, i) => i + 1)]],
     ),
-  //   new ContractSolver(
-  //     Constants.CONTRACT_TYPES.TOTAL_WAYS_TO_SUM_II,
-  // new Solver_totalWaysToSumII(),
-  //   ),
+    new ContractSolver(
+      Constants.CONTRACT_TYPES.TOTAL_WAYS_TO_SUM_II,
+  new Solver_totalWaysToSum()
+    ),
   //   new ContractSolver(
   //     Constants.CONTRACT_TYPES.SPIRALIZE_MATRIX,
   // new Solver_spiralizeMatrix(),

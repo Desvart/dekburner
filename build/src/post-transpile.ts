@@ -1,45 +1,76 @@
-import fs from 'fs';
-import path from 'path';
+import * as fs from 'fs';
+import path from "path";
 
-// Function to get all .js files in a directory recursively
-function getJsFiles(dir: string, fileList: string[] = []): string[] {
-  const files = fs.readdirSync(dir);
+function getModuleName(): string {
+  const directory: string = process.argv[2];
+  if (!directory) {
+    console.log('Please provide a directory to clean up.');
+    process.exit(1);
+  }
+  return directory;
+}
 
-  files.forEach((file) => {
-    if (fs.statSync(path.join(dir, file)).isDirectory()) {
-      fileList = getJsFiles(path.join(dir, file), fileList);
-    } else if (path.extname(file) === '.js') {
-      fileList.push(path.join(dir, file));
+function deleteNonJsFiles(directory: string): void {
+  fs.readdir(directory, (err, files) => {
+    if (err) throw err;
+
+    for (let file of files) {
+      let fullPath: string = path.join(directory, file);
+
+      fs.stat(fullPath, (err, stats) => {
+        if (err) throw err;
+
+        if (stats.isDirectory()) {
+          deleteNonJsFiles(fullPath);
+        } else if (path.extname(fullPath) !== '.js') {
+          fs.unlink(fullPath, err => {
+            if (err) throw err;
+            console.log(`Deleted: ${fullPath}`);
+          });
+        }
+      });
     }
   });
-
-  return fileList;
 }
 
-// Function to copy a file from src to dest
-function copyFile(src: string, dest: string) {
-  const dir = path.dirname(dest);
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
-  }
-  fs.copyFileSync(src, dest);
+function fixImportPaths(directory: string): void {
+  const directoryPath: string = `${directory}`;
+  console.log(`directoryPath: ${directoryPath}`);
+
+  // Regular expression to match the import paths
+  const importRegex: RegExp = /import\s+({[^}]*})\s+from\s+['"]\/mod-(.*?)\/src\/(.*?)['"];/g;
+
+  // Get all the files in the directory
+  const items: string[] = fs.readdirSync(directoryPath);
+  console.log(`Files: ${items}`);
+
+  items.forEach(item => {
+    const itemPath: string = path.join(directoryPath, item);
+
+    // If it's a directory, process it recursively
+    if (fs.statSync(itemPath).isDirectory()) {
+      fixImportPaths(itemPath);
+    }
+
+    // Only process .js files
+    if (path.extname(itemPath) === '.js') {
+      let fileContent: string = fs.readFileSync(itemPath, 'utf8');
+
+      // Replace the import paths
+      fileContent = fileContent.replace(importRegex, 'import $1 from "/$2/$3";');
+
+      // Write the updated content back to the file
+      fs.writeFileSync(itemPath, fileContent, 'utf8');
+    }
+  });
 }
 
-// Get all modules directories
-const pathToRoot = '../../'
-const modules = fs.readdirSync(pathToRoot).filter((dir) => fs.statSync(path.join(pathToRoot,dir)).isDirectory() && dir.startsWith('mod-'));
+function removeNSImports(directory: string): void {
 
-// For each module, get all .js files in the out directory
-modules.forEach((module) => {
-  const outDir = path.join(pathToRoot, module, 'out');
-  if (fs.existsSync(outDir)) {
-    const jsFiles = getJsFiles(outDir);
+}
 
-    // Copy each file to the dist/ci directory, preserving the directory structure
-    jsFiles.forEach((file) => {
-      const relativePath = path.relative(outDir, file);
-      const dest = path.join(pathToRoot, 'dist', 'ci', module.replace('mod-', ''), relativePath);
-      copyFile(file, dest);
-    });
-  }
-});
+
+const directory: string = getModuleName();
+deleteNonJsFiles(directory);
+fixImportPaths(directory);
+removeNSImports(directory);

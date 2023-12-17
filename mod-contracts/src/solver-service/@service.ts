@@ -34,14 +34,18 @@ class Orchestrator {
   }
 
   async start(): Promise<void> {
-    console.debug(Constants.MODULE_NAME, 'Starting contract solver service...');
+    console.debug(Constants.SOLVER_SUBMODULE_NAME, 'Starting contract solver service...');
 
-    while (!this.retriever.isQueueEmpty()) {
-      const contracts: IContractDTO[] = this.retriever.getPublishedContracts();
-      const solvedContracts: ISolvedContractDTO[] = this.batchSolver.solve(contracts);
-      await this.publisher.publish(solvedContracts);
+    while (true) {
+      if (!this.retriever.isQueueEmpty()) {
+        const contracts: IContractDTO[] = this.retriever.getPublishedContracts();
+        const solvedContracts: ISolvedContractDTO[] = this.batchSolver.solve(contracts);
+        await this.publisher.publish(solvedContracts);
+      } else {
+        await this.nsA.waitForPortData(Config.CONTRACT_PUBLICATION_PORT);
+      }
+
+      console.debug(Constants.SOLVER_SUBMODULE_NAME, 'Contract solver service stopped.');
     }
-
-    console.debug(Constants.MODULE_NAME, 'Contract solver service stopped.');
   }
 }

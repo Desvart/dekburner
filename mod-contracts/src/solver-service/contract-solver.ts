@@ -4,6 +4,7 @@ import {
   ISolvedContractDTO,
 } from "/mod-contracts/src/common/IContractDTO";
 import { IProblemSolution, IProblemSolver } from "/mod-contracts/src/solver-service/ISolver";
+import { Constants } from "/mod-contracts/src/common/config";
 
 export class ContractSolver {
   constructor(
@@ -16,8 +17,14 @@ export class ContractSolver {
 
   solve(contract: IContractDTO): ISolvedContractDTO {
     const input: CodingContractData = this.formatInput(contract.data);
+    console.debug(Constants.SOLVER_SUBMODULE_NAME, 'Input data transformed from', contract.data, 'to', input);
+
     const problemSolution: IProblemSolution = this.solver.solve(input);
-    return this.packageSolution(problemSolution, contract);
+    console.debug(Constants.SOLVER_SUBMODULE_NAME, `Contract ${this.contractName} solved with solution:`, problemSolution);
+
+    const solvedContract: ISolvedContractDTO = this.packageSolution(problemSolution, contract);
+    console.debug(Constants.SOLVER_SUBMODULE_NAME, `Contract ${this.contractName} packaged as`, solvedContract);
+    return solvedContract;
   }
 
   private packageSolution(solution: IProblemSolution, contract: IContractDTO): ISolvedContractDTO {

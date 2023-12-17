@@ -10,7 +10,7 @@ export class Scrapper {
   ) {}
 
   getAllContracts(): IContractDTO[] {
-    console.debug(Constants.MODULE_NAME, 'Scanning for contracts...');
+    console.debug(Constants.SCRAPPER_SUBMODULE_NAME, 'Scanning for contracts...');
 
     let allContracts: Contract[] = [];
 
@@ -19,18 +19,18 @@ export class Scrapper {
       allContracts.push(...serverContracts);
     });
 
-    console.debug(Constants.MODULE_NAME, 'Total contracts found:', allContracts.length);
+    console.debug(Constants.SCRAPPER_SUBMODULE_NAME, 'Total contracts found:', allContracts.length);
 
     return this.convertToDTO(allContracts);
   }
 
   private getServerContracts(hostname: string): Contract[] {
-    console.debug(Constants.MODULE_NAME, 'Scanning for contracts on', hostname);
+    console.debug(Constants.SCRAPPER_SUBMODULE_NAME, 'Scanning for contracts on', hostname);
     const contractNames: string[] = this.nsA.getContractNames(hostname);
     const contracts: Contract[] = contractNames.map((contractName: string): Contract =>
       new Contract(this.nsA, contractName, hostname)
     );
-    console.debug(Constants.MODULE_NAME, 'Contracts found on', hostname, ':', contracts.length);
+    console.debug(Constants.SCRAPPER_SUBMODULE_NAME, 'Contracts found on', hostname, ':', contracts.length);
     return contracts;
   }
 

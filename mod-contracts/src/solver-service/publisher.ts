@@ -8,7 +8,7 @@ export class Publisher {
     async publish(solvedContracts: ISolvedContractDTO[]): Promise<void> {
 
       const payload: string = JSON.stringify(solvedContracts);
-      console.debug(Constants.MODULE_NAME, 'Publishing batch of solved contracts:', payload);
+      console.debug(Constants.SOLVER_SUBMODULE_NAME, 'Publishing batch of solved contracts:', payload);
 
       let publicationSuccessful: boolean = this.publishAndLog(payload);
 
@@ -20,7 +20,7 @@ export class Publisher {
 
   private publishAndLog(payload: string): boolean {
     const publicationSuccessful: boolean = this.nsA.publish(payload, Config.SOLUTION_PUBLICATION_PORT);
-    console.debug(Constants.MODULE_NAME, 'Publication status:', publicationSuccessful ? 'success' : 'failed');
+    console.debug(Constants.SOLVER_SUBMODULE_NAME, 'Publication status:', publicationSuccessful ? 'success' : 'failed');
     return publicationSuccessful;
   }
 }

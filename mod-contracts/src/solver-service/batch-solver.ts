@@ -8,29 +8,52 @@ import { Solver_subarrayWithMaximumSum } from "/mod-contracts/src/solver-service
 import { Solver_totalWaysToSum } from "/mod-contracts/src/solver-service/solvers/solver_total-ways-to-sum";
 import { Solver_spiralizeMatrix } from "/mod-contracts/src/solver-service/solvers/solver_spiralize-matrix";
 import { Solver_arrayJumpingGame } from "/mod-contracts/src/solver-service/solvers/solver_array-jumping-game";
+import { Solver_empty } from "/mod-contracts/src/solver-service/solvers/solver_empty";
+import { Solver_arrayJumpingGameII } from "/mod-contracts/src/solver-service/solvers/solver_array-jumping-game-II";
+import {
+  Solver_mergeOverlappingIntervals
+} from "/mod-contracts/src/solver-service/solvers/solver_merge-overlapping-intervals";
 
 export class BatchSolver {
   solve(contracts: IContractDTO[]): ISolvedContractDTO[] {
-    const solvedcontracts: ISolvedContractDTO[] = contracts.map(
+    console.debug(Constants.SOLVER_SUBMODULE_NAME, `Solving batch of contracts:`, contracts);
+    let solvedcontracts: ISolvedContractDTO[] = contracts.map(
       (contract: IContractDTO): ISolvedContractDTO => {
         const contractSolver: ContractSolver = this.findSolver(contract.type);
-        const solvedContract: ISolvedContractDTO =
-          contractSolver.solve(contract);
+        const solvedContract: ISolvedContractDTO = contractSolver.solve(contract);
         return solvedContract;
       },
     );
 
+    solvedcontracts = this.filterOutUnknownContracts(solvedcontracts);
+    console.debug(Constants.SOLVER_SUBMODULE_NAME, `Solved contracts:`, solvedcontracts);
     return solvedcontracts;
   }
 
-  findSolver(contractType: string): ContractSolver {
-    const solver: ContractSolver | undefined = this.ContractSolvers.find(
+  private findSolver(contractType: string): ContractSolver {
+    console.debug(Constants.SOLVER_SUBMODULE_NAME, `Finding solver for contract ${contractType}`);
+    let solver: ContractSolver | undefined = this.ContractSolvers.find(
       (solver) => solver.contractName === contractType,
     );
     if (!solver) {
-      throw new Error(`Solver not found for contract ${contractType}`);
+      console.warn(Constants.SOLVER_SUBMODULE_NAME, `Solver not found for contract ${contractType}`);
+      solver = new ContractSolver(
+        Constants.CONTRACT_TYPES.UNKNOWN,
+        new Solver_empty(),
+      )
     }
+    console.debug(Constants.SOLVER_SUBMODULE_NAME, `Solver found for contract ${contractType}:`, solver);
     return solver;
+  }
+
+  private filterOutUnknownContracts(solvedContracts: ISolvedContractDTO[]): ISolvedContractDTO[] {
+    const solvedContractsWithoutUnknow = solvedContracts.filter(
+      (solvedContract) => solvedContract.solution !== 'UNKNOWN',
+    );
+    console.debug(Constants.SOLVER_SUBMODULE_NAME, `Removed ${solvedContracts.length-solvedContractsWithoutUnknow.length} unknown contracts from batch of contracts`);
+    console.debug(Constants.SOLVER_SUBMODULE_NAME, 'Solved contracts with unknown contracts:', solvedContracts);
+    console.debug(Constants.SOLVER_SUBMODULE_NAME, 'Solved contracts without unknown contracts:', solvedContractsWithoutUnknow);
+    return solvedContractsWithoutUnknow;
   }
 
   private ContractSolvers: ContractSolver[] = [
@@ -55,14 +78,14 @@ export class BatchSolver {
       Constants.CONTRACT_TYPES.ARRAY_JUMPING_GAME,
       new Solver_arrayJumpingGame(),
     ),
-  //   new ContractSolver(
-  //     Constants.CONTRACT_TYPES.ARRAY_JUMPING_GAME_II,
-  //     new Solver_arrayJumpingGameII(),
-  //   ),
-  //   new ContractSolver(
-  //     Constants.CONTRACT_TYPES.MERGE_OVERLAPPING_INTERVALS,
-  //     new Solver_mergeOverlappingIntervals(),
-  //   ),
+    new ContractSolver(
+      Constants.CONTRACT_TYPES.ARRAY_JUMPING_GAME_II,
+      new Solver_arrayJumpingGameII(),
+    ),
+    new ContractSolver(
+      Constants.CONTRACT_TYPES.MERGE_OVERLAPPING_INTERVALS,
+      new Solver_mergeOverlappingIntervals(),
+    ),
   //   new ContractSolver(
   //     Constants.CONTRACT_TYPES.GENERATE_IP_ADDRESSES,
   //     new Solver_generateIpAddresses(),

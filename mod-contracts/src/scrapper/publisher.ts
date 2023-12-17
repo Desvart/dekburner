@@ -8,12 +8,12 @@ export class Publisher {
   ) {}
 
   async publish(contracts: IContractDTO[]): Promise<void> {
-    console.debug(Constants.MODULE_NAME, 'Publishing contracts...');
+    console.debug(Constants.SCRAPPER_SUBMODULE_NAME, 'Publishing contracts...');
     const batches: IContractDTO[][] = this.buildBatches(contracts);
 
     let batchId: number = 0;
     for (const batch of batches) {
-      console.debug(Constants.MODULE_NAME, 'Publishing batch:', batchId, 'of', batches.length);
+      console.debug(Constants.SCRAPPER_SUBMODULE_NAME, 'Publishing batch:', batchId, 'of', batches.length);
       await this.publishBatch(batch);
       batchId++;
     }
@@ -25,7 +25,7 @@ export class Publisher {
     let batch: IContractDTO[] = [];
 
     let batchQuantity: number = Math.ceil(contracts.length / Config.PUBLICATION_BATCH_SIZE);
-    console.debug(Constants.MODULE_NAME, 'Total batches to publish:', batchQuantity);
+    console.debug(Constants.SCRAPPER_SUBMODULE_NAME, 'Total batches to publish:', batchQuantity);
 
     for (let i: number = 0; i < batchQuantity; i++) {
       batch = contracts.splice(0, Config.PUBLICATION_BATCH_SIZE);
@@ -38,7 +38,7 @@ export class Publisher {
   private async publishBatch(batch: IContractDTO[]): Promise<void> {
 
     const payload: string = JSON.stringify(batch);
-    console.debug(Constants.MODULE_NAME, 'Publishing batch:', payload);
+    console.debug(Constants.SCRAPPER_SUBMODULE_NAME, 'Publishing batch:', payload);
 
     let publicationSuccessful: boolean = this.publishAndLog(payload);
 
@@ -50,7 +50,7 @@ export class Publisher {
 
   private publishAndLog(payload: string): boolean {
     const publicationSuccessful: boolean = this.nsA.publish(payload, Config.CONTRACT_PUBLICATION_PORT);
-    console.debug(Constants.MODULE_NAME, 'Publication status:', publicationSuccessful ? 'success' : 'failed');
+    console.debug(Constants.SCRAPPER_SUBMODULE_NAME, 'Publication status:', publicationSuccessful ? 'success' : 'failed');
     return publicationSuccessful;
   }
 

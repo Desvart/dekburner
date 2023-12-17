@@ -34,7 +34,7 @@ class Orchestrator {
   }
 
   async start(): Promise<void> {
-    console.debug(Constants.MODULE_NAME, 'Starting contract scrapper daemon...');
+    console.debug(Constants.SCRAPPER_SUBMODULE_NAME, 'Starting contract scrapper daemon...');
 
     do {
       const contracts: IContractDTO[] = this.scrapper.getAllContracts();
@@ -44,7 +44,7 @@ class Orchestrator {
       await this.waitForNextLoop();
     } while (!this.exitConditionReached());
 
-    console.debug(Constants.MODULE_NAME, 'Contract scrapper daemon stopped.');
+    console.debug(Constants.SCRAPPER_SUBMODULE_NAME, 'Contract scrapper daemon stopped.');
   }
 
   private async waitForNextLoop(): Promise<void> {

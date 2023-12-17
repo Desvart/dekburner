@@ -2,6 +2,10 @@ import { NS as INs } from "@ns";
 import { Solver_subarrayWithMaximumSum } from "/mod-contracts/src/solver-service/solvers/solver_subarray-with-maximum-sum";
 import { Solver_totalWaysToSum } from "/mod-contracts/src/solver-service/solvers/solver_total-ways-to-sum";
 import { Solver_spiralizeMatrix } from "/mod-contracts/src/solver-service/solvers/solver_spiralize-matrix";
+import { Solver_arrayJumpingGameII } from "/mod-contracts/src/solver-service/solvers/solver_array-jumping-game-II";
+import {
+  Solver_mergeOverlappingIntervals
+} from "/mod-contracts/src/solver-service/solvers/solver_merge-overlapping-intervals";
 
 // TODO: generate the output already in ci folder and then delete all other files AND reformat import
 
@@ -11,16 +15,14 @@ export async function main(ns: INs): Promise<void> {
   ns.disableLog("ALL");
   ns.clearLog();
 
-  const qty: number = (ns.args[0] as number) || 1;
+  const type: string = (ns.args[0] as string);
+  const qty: number = (ns.args[1] as number) || 1;
 
-  //const contractTypes = ns.codingcontract.getContractTypes();
-  //ns.print(contractTypes);
-
-  testContractSolver("Spiralize Matrix", qty, ns);
+  testContractSolver(type, qty, ns);
 }
 
 function testContractSolver(type: string, qty: number, ns: INs): void {
-  const solver = new Solver_spiralizeMatrix();
+  const solver = new Solver_mergeOverlappingIntervals();
   for (let i = 0; i < qty; i++) {
     ns.print(`Contract type: ${type}`);
     ns.print(`Iteration ${i + 1} of ${qty}`);
@@ -37,10 +39,10 @@ function testContractSolver(type: string, qty: number, ns: INs): void {
     const data = ns.codingcontract.getData(fileName, "home");
     ns.print(`Data: ${data}`);
 
-    const convertedData = convertData(data);
-    ns.print(`Converted data: ${convertedData}`);
+    // const convertedData = convertData(data);
+    // ns.print(`Converted data: ${convertedData}`);
 
-    const solution = solver.solve(convertedData);
+    const solution = solver.solve(data);
     ns.print(`Solution: ${solution}`);
 
     const answer = ns.codingcontract.attempt(solution, fileName, "home");

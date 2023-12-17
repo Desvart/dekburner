@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "watch:transpile": "tsc -w --preserveWatchOutput -p tsconfig.json",
-    "transpile": "tsc -p tsconfig.json",
+    "transpile": "tsc -p ./src/tsconfig.json",
     "post-transpile": "node ../build/out/move-js-to-ci.js",
     "build": "npm run transpile && npm run post-transpile",
     "watch:remote": "bitburner-filesync",

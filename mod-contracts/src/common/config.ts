@@ -9,7 +9,10 @@ export class Config {
 }
 
 export class Constants {
-  static readonly MODULE_NAME: string = "MOD-CONTRACTS -";
+  static readonly MODULE_NAME: string = "MOD-CONTRACTS";
+  static readonly SCRAPPER_SUBMODULE_NAME: string = Constants.MODULE_NAME + " SCRAPPER -";
+  static readonly SOLVER_SUBMODULE_NAME: string = Constants.MODULE_NAME + " SOLVER -";
+  static readonly SUBMITTER_SUBMODULE_NAME: string = Constants.MODULE_NAME + " SUBMITTER -";
   static readonly HOME_HOSTNAME: string = "home";
   static readonly CONTRACT_FILE_EXTENSION: string = ".cct";
   static readonly CONTRACT_TYPES = {
@@ -38,6 +41,7 @@ export class Constants {
     COMPRESSION_II_LZ_DECOMPRESSION: "Compression II: LZ Decompression",
     COMPRESSION_III_LZ_COMPRESSION: "Compression III: LZ Compression",
     ENCRYPTION_I_CAESAR_CIPHER: "Encryption I: Caesar Cipher",
-    ENCRYPTION_II_VIGENERE_CIPHER: "Encryption II: Vigenère Cipher"
+    ENCRYPTION_II_VIGENERE_CIPHER: "Encryption II: Vigenère Cipher",
+    UNKNOWN: "Unknown"
   };
 }

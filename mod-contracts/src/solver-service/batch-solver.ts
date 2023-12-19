@@ -13,6 +13,31 @@ import { Solver_arrayJumpingGameII } from "/mod-contracts/src/solver-service/sol
 import {
   Solver_mergeOverlappingIntervals
 } from "/mod-contracts/src/solver-service/solvers/solver_merge-overlapping-intervals";
+import { Solver_generateIpAddresses } from "/mod-contracts/src/solver-service/solvers/solver_generate-ip-addresses";
+import {
+  Solver_minimumPathSumInATriangle
+} from "/mod-contracts/src/solver-service/solvers/solver_minimum-path-sum-in-a-triangle";
+import {
+  Solver_sanitizeParenthesesInExpression
+} from "/mod-contracts/src/solver-service/solvers/solver_sanitize-parentheses-in-expression";
+import {
+  Solver_findLargestPrimeNumber
+} from "/mod-contracts/src/solver-service/solvers/solver_find-largest-prime-number";
+import { Solver_shortestPathInAGrid } from "/mod-contracts/src/solver-service/solvers/solver_shortest-path-in-a-grid";
+import {
+  Solver_findAllValidMathExpressions
+} from "/mod-contracts/src/solver-service/solvers/solver_find-all-valid-math-expressions";
+import {
+  Solver_proper2ColoringOfAGraph
+} from "/mod-contracts/src/solver-service/solvers/solver_proper-2-coloring-of-a-graph";
+import { Solver_encryptionICaesar } from "/mod-contracts/src/solver-service/solvers/solver_encryption-I-caesar";
+import { Solver_encryptionIIVigenere } from "/mod-contracts/src/solver-service/solvers/solver_encryption-II-vigenere";
+import {
+  Solver_hammingcodeEncodedIntegerToBinary
+} from "/mod-contracts/src/solver-service/solvers/solver_hammingcode-encoded-integer-to-binary";
+import {
+  Solver_hammingcodeEncodedBinarytoInteger
+} from "/mod-contracts/src/solver-service/solvers/solver_hammingcode-encoded-binary-to-integer";
 
 export class BatchSolver {
   solve(contracts: IContractDTO[]): ISolvedContractDTO[] {
@@ -30,7 +55,7 @@ export class BatchSolver {
     return solvedcontracts;
   }
 
-  private findSolver(contractType: string): ContractSolver {
+  public findSolver(contractType: string): ContractSolver { // todo: make private
     console.debug(Constants.SOLVER_SUBMODULE_NAME, `Finding solver for contract ${contractType}`);
     let solver: ContractSolver | undefined = this.ContractSolvers.find(
       (solver) => solver.contractName === contractType,
@@ -57,6 +82,10 @@ export class BatchSolver {
   }
 
   private ContractSolvers: ContractSolver[] = [
+    new ContractSolver(
+      Constants.CONTRACT_TYPES.FIND_LARGEST_PRIME_FACTOR,
+      new Solver_findLargestPrimeNumber(),
+    ),
     new ContractSolver(
       Constants.CONTRACT_TYPES.SUBARRAY_WITH_MAXIMUM_SUM,
       new Solver_subarrayWithMaximumSum(),
@@ -86,10 +115,10 @@ export class BatchSolver {
       Constants.CONTRACT_TYPES.MERGE_OVERLAPPING_INTERVALS,
       new Solver_mergeOverlappingIntervals(),
     ),
-  //   new ContractSolver(
-  //     Constants.CONTRACT_TYPES.GENERATE_IP_ADDRESSES,
-  //     new Solver_generateIpAddresses(),
-  //   ),
+    new ContractSolver(
+      Constants.CONTRACT_TYPES.GENERATE_IP_ADDRESSES,
+      new Solver_generateIpAddresses(),
+    ),
   //   new ContractSolver(
   //     Constants.CONTRACT_TYPES.ALGORITHMIC_STOCK_TRADER_I,
   //     new Solver_algorithmicStockTraderI(),
@@ -109,10 +138,10 @@ export class BatchSolver {
   //     Constants.CONTRACT_TYPES.ALGORITHMIC_STOCK_TRADER_IV,
   //     new Solver_algorithmicStockTraderIV(),
   //   ),
-  //   new ContractSolver(
-  //     Constants.CONTRACT_TYPES.MINIMUM_PATH_SUM_IN_A_TRIANGLE,
-  //     new Solver_minimumPathSumInATriangle(),
-  //   ),
+    new ContractSolver(
+      Constants.CONTRACT_TYPES.MINIMUM_PATH_SUM_IN_A_TRIANGLE,
+      new Solver_minimumPathSumInATriangle(),
+    ),
   //   new ContractSolver(
   //     Constants.CONTRACT_TYPES.UNIQUE_PATHS_IN_A_GRID_I,
   //     new Solver_uniquePathsInAGridI(),
@@ -125,30 +154,30 @@ export class BatchSolver {
   //     Constants.CONTRACT_TYPES.UNIQUE_PATHS_IN_A_GRID_II,
   //     new Solver_uniquePathsInAGridII(),
   //   ),
-  //   new ContractSolver(
-  //     Constants.CONTRACT_TYPES.SHORTEST_PATH_IN_A_GRID,
-  //     new Solver_shortestPathInAGrid(),
-  //   ),
-  //   new ContractSolver(
-  //     Constants.CONTRACT_TYPES.SANITIZE_PARENTHESES_IN_EXPRESSION,
-  //     new Solver_sanitizeParenthesesInExpression(),
-  //   ),
-  //   new ContractSolver(
-  //     Constants.CONTRACT_TYPES.FIND_ALL_VALID_MATH_EXPRESSIONS,
-  //     new Solver_findAllValidMathExpressions(),
-  //   ),
-  //   new ContractSolver(
-  //     Constants.CONTRACT_TYPES.HAMMINGCODES_INTEGER_TO_ENCODED_BINARY,
-  //     new Solver_hammingcodesI2B(),
-  //   ),
-  //   new ContractSolver(
-  //     Constants.CONTRACT_TYPES.HAMMINGCODES_ENCODED_BINARY_TO_INTEGER,
-  //     new Solver_hammingcodesB2I(),
-  //   ),
-  //   new ContractSolver(
-  //     Constants.CONTRACT_TYPES.PROPER_2_COLORING_OF_A_GRAPH,
-  //     new Solver_proper2ColoringOfAGraph(),
-  //   ),
+    new ContractSolver(
+      Constants.CONTRACT_TYPES.SHORTEST_PATH_IN_A_GRID,
+      new Solver_shortestPathInAGrid(),
+    ),
+    new ContractSolver(
+      Constants.CONTRACT_TYPES.SANITIZE_PARENTHESES_IN_EXPRESSION,
+      new Solver_sanitizeParenthesesInExpression(),
+    ),
+    new ContractSolver(
+      Constants.CONTRACT_TYPES.FIND_ALL_VALID_MATH_EXPRESSIONS,
+      new Solver_findAllValidMathExpressions(),
+    ),
+    new ContractSolver(
+      Constants.CONTRACT_TYPES.HAMMINGCODES_INTEGER_TO_ENCODED_BINARY,
+      new Solver_hammingcodeEncodedIntegerToBinary(),
+    ),
+    new ContractSolver(
+      Constants.CONTRACT_TYPES.HAMMINGCODES_ENCODED_BINARY_TO_INTEGER,
+      new Solver_hammingcodeEncodedBinarytoInteger(),
+    ),
+    new ContractSolver(
+      Constants.CONTRACT_TYPES.PROPER_2_COLORING_OF_A_GRAPH,
+      new Solver_proper2ColoringOfAGraph(),
+    ),
   //   new ContractSolver(
   //     Constants.CONTRACT_TYPES.COMPRESSION_I_RLE_COMPRESSION,
   //     new Solver_compressionI(),
@@ -161,13 +190,13 @@ export class BatchSolver {
   //     Constants.CONTRACT_TYPES.COMPRESSION_III_LZ_COMPRESSION,
   //     new Solver_compressionIII(),
   //   ),
-  //   new ContractSolver(
-  //     Constants.CONTRACT_TYPES.ENCRYPTION_I_CAESAR_CIPHER,
-  //     new Solver_encryptionI(),
-  //   ),
-  //   new ContractSolver(
-  //     Constants.CONTRACT_TYPES.ENCRYPTION_II_VIGENERE_CIPHER,
-  //     new Solver_encryptionII(),
-  //   ),
+    new ContractSolver(
+      Constants.CONTRACT_TYPES.ENCRYPTION_I_CAESAR_CIPHER,
+      new Solver_encryptionICaesar(),
+    ),
+    new ContractSolver(
+      Constants.CONTRACT_TYPES.ENCRYPTION_II_VIGENERE_CIPHER,
+      new Solver_encryptionIIVigenere(),
+    ),
   ];
 }

@@ -16,6 +16,7 @@ export class Constants {
   static readonly HOME_HOSTNAME: string = "home";
   static readonly CONTRACT_FILE_EXTENSION: string = ".cct";
   static readonly CONTRACT_TYPES = {
+    FIND_LARGEST_PRIME_FACTOR: "Find Largest Prime Factor",
     SUBARRAY_WITH_MAXIMUM_SUM: "Subarray with Maximum Sum",
     TOTAL_WAYS_TO_SUM: "Total Ways to Sum",
     TOTAL_WAYS_TO_SUM_II: "Total Ways to Sum II",

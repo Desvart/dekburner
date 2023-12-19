@@ -1,4 +1,4 @@
-import { NS as INs } from "@ns";
+import { CodingContractData, NS as INs } from "@ns";
 import { Solver_subarrayWithMaximumSum } from "/mod-contracts/src/solver-service/solvers/solver_subarray-with-maximum-sum";
 import { Solver_totalWaysToSum } from "/mod-contracts/src/solver-service/solvers/solver_total-ways-to-sum";
 import { Solver_spiralizeMatrix } from "/mod-contracts/src/solver-service/solvers/solver_spiralize-matrix";
@@ -6,6 +6,8 @@ import { Solver_arrayJumpingGameII } from "/mod-contracts/src/solver-service/sol
 import {
   Solver_mergeOverlappingIntervals
 } from "/mod-contracts/src/solver-service/solvers/solver_merge-overlapping-intervals";
+import { BatchSolver } from "/mod-contracts/src/solver-service/batch-solver";
+import { Contract } from "/mod-contracts/src/scrapper/contract";
 
 // TODO: generate the output already in ci folder and then delete all other files AND reformat import
 
@@ -22,7 +24,8 @@ export async function main(ns: INs): Promise<void> {
 }
 
 function testContractSolver(type: string, qty: number, ns: INs): void {
-  const solver = new Solver_mergeOverlappingIntervals();
+  const solver = new BatchSolver().findSolver(type);
+
   for (let i = 0; i < qty; i++) {
     ns.print(`Contract type: ${type}`);
     ns.print(`Iteration ${i + 1} of ${qty}`);
@@ -42,10 +45,10 @@ function testContractSolver(type: string, qty: number, ns: INs): void {
     // const convertedData = convertData(data);
     // ns.print(`Converted data: ${convertedData}`);
 
-    const solution = solver.solve(data);
-    ns.print(`Solution: ${solution}`);
+    const solvedContract = solver.solve({  fileName: fileName, hostname: 'home', type: type, data: data});
+    ns.print(`Solved contract: ${solvedContract}`);
 
-    const answer = ns.codingcontract.attempt(solution, fileName, "home");
+    const answer = ns.codingcontract.attempt(solvedContract.solution as unknown as any[], fileName, "home");
 
     const isAnswerValid = answer !== "";
     ns.print(`Answer: ${isAnswerValid ? "✅" : "❌"}`);

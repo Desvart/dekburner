@@ -9,7 +9,7 @@ spaces and it will be ignored as a terminating `)` of URL content.
 https://www.plantuml.com/plantuml/uml/SoWkIImgoKqioU1AqoZHjDL8Z3VGr3TIq5OeBisDryYpDTICoyzFZCzBpY_MqCWho2pHrFVHr4QML4YApujHACxCGyXpEQJcfO0D1G00
 
 
-http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/plantuml/plan...
+![](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/Desvart/dekburner/master/mod-hacking/doc/img/alice.puml)
 
 ```plantuml
 @startuml

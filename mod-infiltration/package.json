@@ -1,0 +1,10 @@
+{
+  "name": "infiltration",
+  "version": "1.0.0",
+  "scripts": {
+    "transpile": "tsc --project ./src/tsconfig.json",
+    "post-transpile": "node ../build/out/post-transpile.js ../dist/ci/infiltration",
+    "build": "npm run transpile && npm run post-transpile",
+    "test": "jest --coverage --coverageProvider=v8"
+  }
+}

@@ -4,6 +4,7 @@
       { "path": "./mod-contracts" },
       { "path": "./mod-hacking" },
       { "path": "./mod-hacknet" },
+      { "path": "./mod-infiltration" },
       { "path": "./mod-utils" },
     ]
 }

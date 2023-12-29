@@ -38,6 +38,13 @@ import {
 import {
   Solver_hammingcodeEncodedBinarytoInteger
 } from "/mod-contracts/src/solver-service/solvers/solver_hammingcode-encoded-binary-to-integer";
+import { Solver_uniquePathInAGrid } from "/mod-contracts/src/solver-service/solvers/solver_unique-path-in-a-grid";
+import { Solver_compressionI } from "/mod-contracts/src/solver-service/solvers/solver_compression_I";
+import { Solver_compressionII } from "/mod-contracts/src/solver-service/solvers/solver_compression_II";
+import { Solver_compressionIII } from "/mod-contracts/src/solver-service/solvers/solver_compression_III";
+import {
+  Solver_algorithmicStockTrader
+} from "/mod-contracts/src/solver-service/solvers/solver_algorithmic-stock-trader";
 
 export class BatchSolver {
   solve(contracts: IContractDTO[]): ISolvedContractDTO[] {
@@ -119,41 +126,41 @@ export class BatchSolver {
       Constants.CONTRACT_TYPES.GENERATE_IP_ADDRESSES,
       new Solver_generateIpAddresses(),
     ),
-  //   new ContractSolver(
-  //     Constants.CONTRACT_TYPES.ALGORITHMIC_STOCK_TRADER_I,
-  //     new Solver_algorithmicStockTraderI(),
-  //     (data) => [1, data],
-  //   ),
-  //   new ContractSolver(
-  //     Constants.CONTRACT_TYPES.ALGORITHMIC_STOCK_TRADER_II,
-  //     new Solver_algorithmicStockTraderII(),
-  //     (data) => [data.length, data],
-  //   ),
-  //   new ContractSolver(
-  //     Constants.CONTRACT_TYPES.ALGORITHMIC_STOCK_TRADER_III,
-  //     new Solver_algorithmicStockTraderIII(),
-  //     (data) => [2, data],
-  //   ),
-  //   new ContractSolver(
-  //     Constants.CONTRACT_TYPES.ALGORITHMIC_STOCK_TRADER_IV,
-  //     new Solver_algorithmicStockTraderIV(),
-  //   ),
+    new ContractSolver(
+      Constants.CONTRACT_TYPES.ALGORITHMIC_STOCK_TRADER_I,
+      new Solver_algorithmicStockTrader(),
+      (data) => [1, data],
+    ),
+    new ContractSolver(
+      Constants.CONTRACT_TYPES.ALGORITHMIC_STOCK_TRADER_II,
+      new Solver_algorithmicStockTrader(),
+      (data) => [data.length, data],
+    ),
+    new ContractSolver(
+      Constants.CONTRACT_TYPES.ALGORITHMIC_STOCK_TRADER_III,
+      new Solver_algorithmicStockTrader(),
+      (data) => [2, data],
+    ),
+    new ContractSolver(
+      Constants.CONTRACT_TYPES.ALGORITHMIC_STOCK_TRADER_IV,
+      new Solver_algorithmicStockTrader(),
+    ),
     new ContractSolver(
       Constants.CONTRACT_TYPES.MINIMUM_PATH_SUM_IN_A_TRIANGLE,
       new Solver_minimumPathSumInATriangle(),
     ),
-  //   new ContractSolver(
-  //     Constants.CONTRACT_TYPES.UNIQUE_PATHS_IN_A_GRID_I,
-  //     new Solver_uniquePathsInAGridI(),
-  //     (data) =>
-  //       Array(data[0])
-  //         .fill(null)
-  //         .map(() => Array(data[1]).fill(0)),
-  //   ),
-  //   new ContractSolver(
-  //     Constants.CONTRACT_TYPES.UNIQUE_PATHS_IN_A_GRID_II,
-  //     new Solver_uniquePathsInAGridII(),
-  //   ),
+    new ContractSolver(
+      Constants.CONTRACT_TYPES.UNIQUE_PATHS_IN_A_GRID_I,
+      new Solver_uniquePathInAGrid(),
+      (data) =>
+        Array(data[0])
+          .fill(null)
+          .map(() => Array(data[1]).fill(0)),
+    ),
+    new ContractSolver(
+      Constants.CONTRACT_TYPES.UNIQUE_PATHS_IN_A_GRID_II,
+      new Solver_uniquePathInAGrid(),
+    ),
     new ContractSolver(
       Constants.CONTRACT_TYPES.SHORTEST_PATH_IN_A_GRID,
       new Solver_shortestPathInAGrid(),
@@ -178,18 +185,18 @@ export class BatchSolver {
       Constants.CONTRACT_TYPES.PROPER_2_COLORING_OF_A_GRAPH,
       new Solver_proper2ColoringOfAGraph(),
     ),
-  //   new ContractSolver(
-  //     Constants.CONTRACT_TYPES.COMPRESSION_I_RLE_COMPRESSION,
-  //     new Solver_compressionI(),
-  //   ),
-  //   new ContractSolver(
-  //     Constants.CONTRACT_TYPES.COMPRESSION_II_LZ_DECOMPRESSION,
-  //     new Solver_compressionII(),
-  //   ),
-  //   new ContractSolver(
-  //     Constants.CONTRACT_TYPES.COMPRESSION_III_LZ_COMPRESSION,
-  //     new Solver_compressionIII(),
-  //   ),
+    new ContractSolver(
+      Constants.CONTRACT_TYPES.COMPRESSION_I_RLE_COMPRESSION,
+      new Solver_compressionI(),
+    ),
+    new ContractSolver(
+      Constants.CONTRACT_TYPES.COMPRESSION_II_LZ_DECOMPRESSION,
+      new Solver_compressionII(),
+    ),
+    new ContractSolver(
+      Constants.CONTRACT_TYPES.COMPRESSION_III_LZ_COMPRESSION,
+      new Solver_compressionIII(),
+    ),
     new ContractSolver(
       Constants.CONTRACT_TYPES.ENCRYPTION_I_CAESAR_CIPHER,
       new Solver_encryptionICaesar(),

@@ -1,0 +1,76 @@
+.explorer-window {
+    width: 800px;
+    height: 100%;
+    white-space: normal;
+}
+
+.explorer-path, .explorer-files-selected {
+    min-height: 24px;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid currentColor;
+}
+
+.explorer-dir-name, .explorer-file-name {
+    width: 100%;
+    text-align: center;
+    display: block;
+    overflow: auto;
+    max-height: 22px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: "Lucida Console", "Lucida Sans Unicode", "Fira Mono", Consolas, "Courier New", Courier, monospace, "Times New Roman";
+}
+
+.explorer-directory, .explorer-file {
+    width: calc(20% - 20px);
+    margin: 10px;
+    height: 160px;
+    padding: 0;
+    background-color: #272727;
+    cursor: pointer;
+}
+
+.explorer-directory:hover,
+.explorer-file:hover,
+.explorer-directory.selected,
+.explorer-file.selected {
+    border: 1px solid currentColor;
+    width: calc(20% - 22px);
+    height: 158px;
+}
+
+.explorer-dir-image, .explorer-file-image {
+    max-width: 80px;
+    max-height: 80px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.explorer-content {
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+    height: 440px;
+    overflow: scroll;
+    border: 2px solid;
+    width: calc(100% - 4px);
+    white-space: pre-line;
+}
+
+.explorer-buttons {
+    display: flex;
+}
+
+.explorer-buttons button {
+    margin-right: 7px;
+}
+
+.explorer-back-link:hover {
+    text-decoration: underline;
+}
+
+.explorer-back-link {
+    cursor: pointer;
+}
